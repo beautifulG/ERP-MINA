@@ -8,6 +8,7 @@ db = SQLAlchemy()
 
 
 class Category(db.Model):
+    """产品分组表"""
     __tablename__ = 'category'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -19,11 +20,13 @@ class Category(db.Model):
 
 
 class Product(db.Model):
+    """产品表"""
     __tablename__ = 'product'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     category_id = db.Column(db.Integer, db.ForeignKey(Category.id), nullable=False)
     name = db.Column(db.String(64), unique=True, nullable=False)
+    barcode = db.Column(db.String(64), unique=True)
     description = db.Column(db.Text, nullable=False, default='')
     inventory = db.Column(db.Integer, nullable=False, default=0)
 
@@ -32,6 +35,7 @@ class Product(db.Model):
 
 
 class StockIn(db.Model):
+    """入库表"""
     __tablename__ = 'stockin'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -42,6 +46,7 @@ class StockIn(db.Model):
 
 
 class StockInDetail(db.Model):
+    """入库详情"""
     __tablename__ = 'stockin_detail'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -51,6 +56,7 @@ class StockInDetail(db.Model):
 
 
 class StockOut(db.Model):
+    """出库表"""
     __tablename__ = 'stockout'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -62,6 +68,7 @@ class StockOut(db.Model):
 
 
 class StockOutDetail(db.Model):
+    """出库详情"""
     __tablename__ = 'stockout_detail'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
