@@ -5,6 +5,7 @@ import os
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = True
+    BUNDLE_ERRORS = True
 
     @staticmethod
     def init_app(app):
